@@ -24,7 +24,7 @@ export class AddNewEmployeeComponent implements OnInit {
   onFormSubmit(){
     let employeeObject ={
       employeeNumber: this.employeeNumber,
-      employmentDate:this.employmentDate,
+      employedDate:this.employmentDate,
       firstName:this.firstname,
       lastName:this.lastname,
       birthDate:this.birthDate,

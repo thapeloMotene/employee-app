@@ -19,7 +19,7 @@
                 <br/>
                 <br/>
                 <label>Employment Date: </label>
-                <input type="date" name="employmentDate" id="employmentDate" [(ngModel)]="employmentDate" />
+                <input type="date" name="employmentDate" id="employmentDate"  [ngModel]="employmentDate | date:'yyyy-MM-dd'" (ngModelChange)="employmentDate = $event" />
                 
 
                 <p>Personal Information:</p>
@@ -37,7 +37,7 @@
                 <br/>
                 <br/>
                 <label>Birth Date: </label>
-                <input type="date" name="birthDate"  id="birthDate" [(ngModel)]="birthDate" />
+                <input type="date" name="birthDate"  id="birthDate"  [ngModel]="birthDate | date:'yyyy-MM-dd'" (ngModelChange)="birthDate = $event"/>
 
             </div>
             <div class="modal-footer">

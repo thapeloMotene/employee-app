@@ -36,4 +36,19 @@ export class EmployeesService {
   getPerson(id:any){
     return this._http.get("/api/People/"+id);
   }
+
+  updateEmployee(id:any, body:any){
+    return this._http.put("/api/Employees/"+id, body);
+
+  }
+
+  updatePerson(id:any, body:any){
+
+    return this._http.put("/api/People/"+id, body);
+
+  }
+
+
+
+
 }

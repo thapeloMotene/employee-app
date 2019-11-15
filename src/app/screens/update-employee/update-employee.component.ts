@@ -14,8 +14,8 @@ export class UpdateEmployeeComponent implements OnInit {
   employmentDate:Date;
   firstname:string;
   lastname:string;
-  birthDate:Date;
-  terminatedDate:Date;
+  birthDate:any;
+  terminatedDate:any;
   hasEmployee:Boolean =false;
   hasPerson:Boolean =false;
  
@@ -27,15 +27,17 @@ export class UpdateEmployeeComponent implements OnInit {
       this._employeeService.getEmployee(this.employeeId).subscribe(res =>{
           this.employeeNumber= res["employeeNumber"];
           this.employeeId = res["employeeId"];
-          this.employmentDate=res["employmentDate"];
-          this.terminatedDate=res["terminatedDate"];
+          this.employmentDate=  this.parseDate(res["employmentDate"]);
+          this.terminatedDate=this.parseDate(res["terminatedDate"]);
           this.personId = res["personId"];
           this.hasEmployee = true;
           
-          this._employeeService.getPerson(this.personId).subscribe(res =>{
-            this.firstname=res["firstName"];
-            this.lastname =res["lastName"];
-            this.birthDate= res["birthDate"];
+          this._employeeService.getPerson(this.personId).subscribe(result =>{
+
+            console.log('reslt', result)
+            this.firstname=result["firstName"];
+            this.lastname =result["lastName"];
+            this.birthDate=  this.parseDate(result["birthDate"]);
 
             this.hasPerson=true;
           })
@@ -45,29 +47,40 @@ export class UpdateEmployeeComponent implements OnInit {
   ngOnInit() {
   }
 
+  parseDate( dateString){
+
+    if (dateString){
+      return new Date(dateString);
+    }else{
+      return null
+    }
+
+
+  }
+
   onFormSubmit(){
-    let employeeObject ={
-      employeeNumber: this.employeeNumber,
-      employmentDate:this.employmentDate,
-      firstName:this.firstname,
-      lastName:this.lastname,
+
+
+    let employeeObj ={
+      employeeId: this.employeeId,
+      personId:this.personId,
       birthDate:this.birthDate,
-      personId:this.personId,
-      employeeId:this.employeeId
+      employeeNumber:this.employeeNumber,
+      employedDate:this.employmentDate,
+      terminatedDate:this.terminatedDate,
+      firstName:this.firstname.trim(),
+      lastName:this.lastname.trim(),
+
     }
+ 
 
-    let personObject ={
-      personId:this.personId,
-      lastName:this.lastname,
-      firstName:this.firstname,
-      birthDate:this.birthDate
-    }
+   
 
 
-    this._employeeService.createPerson(personObject).subscribe(res =>{
-        this._employeeService.createEmployee(employeeObject).subscribe(response =>{
+    this._employeeService.updatePerson(this.employeeId,employeeObj).subscribe(res =>{
+        this._employeeService.updatePerson(this.personId,employeeObj).subscribe(response =>{
 
-            this._router.navigate(["/"])
+            this._router.navigate(["/"]);
 
         }, (error)=>{
           if (error.status == 409){

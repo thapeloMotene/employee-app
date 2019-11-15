@@ -13,6 +13,8 @@ import { DeleteEmployeeComponent } from './screens/delete-employee/delete-employ
 import { FormsModule }   from '@angular/forms';
 import { LoaderComponent } from './component/loader/loader.component';
 
+ 
+
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -34,7 +36,11 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
   ],
 
   exports:[
