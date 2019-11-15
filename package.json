@@ -9,9 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "proxied": "ng serve --proxy-config proxy.conf.json",
-    "dockerize":"npm run build --prod && docker build -t employee-app .",
-    "run:container":"docker run -p 3000:3000 -d  employee-app"
-    
+    "dockerize": "npm run build --prod && docker build -t employee-app .",
+    "run:container": "docker run -p 3000:3000 -d  employee-app"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +32,7 @@
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0",
     "http-proxy": "^1.18.0",
+    "ngx-toastr": "^10.1.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
