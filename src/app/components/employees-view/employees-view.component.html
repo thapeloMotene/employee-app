@@ -1,0 +1,65 @@
+<div class="clr-row">
+    <div class="clr-col-lg-10 clr-col-sm-10 clr-col-10 clr-offset-sm-1 clr-offset-sm-1 clr-offset-lg-1 ">
+        <div class="card">
+            <div class="card-header">
+
+              <div class="clr-row">
+                <div class="clr-col-lg-10">
+                    All Employees
+                </div>
+                <div class="clr-col-lg-2">
+                    <button class="btn btn-success" routerLink="/new-employee">Add A New Employee</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-block">
+
+            
+                <p class="card-text">
+                    Manage all your employees from a single place.
+                </p>
+            </div>
+            <div class="card-block">
+ 
+                <table class="table user-list">
+                    <thead>
+                        <tr>
+                        <th><span>Employee Number</span></th>
+                        <th><span>Employment Date</span></th>
+                        <th class="text-center"><span>Termination Date</span></th>
+                        <th ><span>Employment Status</span></th>
+                       
+                        <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of employees">
+                        
+                            <td>
+                                
+                                <a class="user-link">{{employee.employeeNumber}}</a>
+                        
+                            </td>
+                            <td> {{employee.employedDate ? employee.employedDate : 'N/A' }}</td>
+                            <td>
+                                <a> {{employee.terminatedDate ? employee.terminatedDate : 'N/A' }}</a>
+                            </td>
+                            <td class="text-center">
+                                <span class="label label-default">{{employee.terminatedDate ? 'dismissed' : 'employed' }}</span>
+                            </td>
+                        
+                            <td style="width: 20%;">
+                                <button class="btn btn-link" routerLink="/update-employee/{{employee.employeeId}}">Update Info</button>
+                                <button class="btn btn-danger-link btn-danger" routerLink="/delete-employee/{{employee.employeeId}}">Delete</button>
+                               
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>

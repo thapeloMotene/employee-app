@@ -1,0 +1,57 @@
+<div class="modal">
+    <form>
+      <div class="modal-dialog" role="dialog" aria-hidden="true">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button aria-label="Close" class="close" type="button">
+                      <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                  </button>
+                  <h3 class="modal-title">Update Employee</h3>
+              </div>
+              <div class="modal-body">
+                <div *ngIf="hasEmployee">
+                  <p>Employee Details:</p>
+                  <label>Employee ID: </label>
+                  <input type="number" name="employeeId"  id="employeeId" [(ngModel)]="employeeId" />
+                  <br/>
+                  <br/>
+                  <label>Employee Number: </label>
+                  <input type="text" name="employeeNumber"  id="employeeNumber" [(ngModel)]="employeeNumber" />
+                  <br/>
+                  <br/>
+                  <label>Employment Date: </label>
+                  <input type="date" name="employmentDate" id="employmentDate" [(ngModel)]="employmentDate" />
+                  <br/>
+                  <br/>
+                  <label>Termination Date: </label>
+                  <input type="date" name="terminatedDate" id="terminatedDate" [(ngModel)]="terminatedDate" />
+                </div>
+                  <hr/>
+                <div *ngIf="hasPerson">
+                  <p>Personal Information:</p>
+                  <label>Person ID: </label>
+                  <input type="number" name="personId"  id="personId" [(ngModel)]="personId" />
+                  <br/>
+                  <br/>
+                  <label>First Name: </label>
+                  <input type="text" name="firstname"  id="firstname" [(ngModel)]="firstname" />
+                  <br/>
+                  <br/>
+                  <label>Last Name: </label>
+                  <input type="text" name="lastname" id="lastname"  [(ngModel)]="lastname" />
+  
+                  <br/>
+                  <br/>
+                  <label>Birth Date: </label>
+                  <input type="date" name="birthDate"  id="birthDate" [(ngModel)]="birthDate" />
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-outline" type="button" routerLink="/">Cancel</button>
+                  <button class="btn btn-primary" type="button" (click)="onFormSubmit()">Ok</button>
+              </div>
+          </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-backdrop" aria-hidden="true"></div>

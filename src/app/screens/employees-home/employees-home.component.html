@@ -1,0 +1,19 @@
+<div>
+
+  <div class="jumbotron"> </div>
+
+  <div *ngIf="hasEmployees">
+      <employees-view [employees]="employees"></employees-view>
+  </div>
+
+
+<div *ngIf="!hasEmployees" class="clr-row">
+  <div class="clr-col-lg-2 clr-offset-5 padding-10">
+      <span class="spinner center">
+          Loading...
+        </span>
+  </div>
+</div>
+
+
+</div>

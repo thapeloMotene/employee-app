@@ -1,0 +1,11 @@
+.jumbotron{
+    background-color: gray;
+    height: 200px;
+    background-image: url("../../../assets/employees-bg.jpg");
+}
+
+
+.padding-10{
+    padding: 50px;
+
+}

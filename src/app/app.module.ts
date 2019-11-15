@@ -1,17 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { EmployeesHomeComponent } from './screens/employees-home/employees-home.component';
+import { EmployeesViewComponent } from './components/employees-view/employees-view.component';
+import { AddNewEmployeeComponent } from './screens/add-new-employee/add-new-employee.component';
+import { UpdateEmployeeComponent } from './screens/update-employee/update-employee.component';
+import { DeleteEmployeeComponent } from './screens/delete-employee/delete-employee.component';
+import { FormsModule }   from '@angular/forms';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    EmployeesHomeComponent,
+    EmployeesViewComponent,
+    AddNewEmployeeComponent,
+    UpdateEmployeeComponent,
+    DeleteEmployeeComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule
   ],
+
+  exports:[
+    HeaderComponent
+  ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,12 @@
+{
+ "/api/Employees": {
+      "target": "https://techtestapi.azurewebsites.net",
+      "secure": false,
+      "changeOrigin": true
+    },
+    "/api/People": {
+        "target": "https://techtestapi.azurewebsites.net",
+        "secure": false,
+        "changeOrigin": true
+      }
+  }
