@@ -8,7 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "proxied": "ng serve --proxy-config proxy.conf.json"
+    "proxied": "ng serve --proxy-config proxy.conf.json",
+    "dockerize":"npm run build --prod && docker build -t employee-app .",
+    "run:container":"docker run -p 3000:3000 -d  employee-app"
+    
   },
   "private": true,
   "dependencies": {
