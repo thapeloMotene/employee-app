@@ -11,6 +11,7 @@ import { AddNewEmployeeComponent } from './screens/add-new-employee/add-new-empl
 import { UpdateEmployeeComponent } from './screens/update-employee/update-employee.component';
 import { DeleteEmployeeComponent } from './screens/delete-employee/delete-employee.component';
 import { FormsModule }   from '@angular/forms';
+import { LoaderComponent } from './component/loader/loader.component';
 
 
 
@@ -24,6 +25,7 @@ import { FormsModule }   from '@angular/forms';
     AddNewEmployeeComponent,
     UpdateEmployeeComponent,
     DeleteEmployeeComponent,
+    LoaderComponent,
 
   ],
   imports: [

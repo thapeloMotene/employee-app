@@ -26,7 +26,9 @@
                   <label>Termination Date: </label>
                   <input type="date" name="terminatedDate" id="terminatedDate" [(ngModel)]="terminatedDate" />
                 </div>
-                  <hr/>
+
+                
+
                 <div *ngIf="hasPerson">
                   <p>Personal Information:</p>
                   <label>Person ID: </label>
@@ -45,7 +47,10 @@
                   <label>Birth Date: </label>
                   <input type="date" name="birthDate"  id="birthDate" [(ngModel)]="birthDate" />
                 </div>
+
+                <app-loader *ngIf="!hasPerson"> </app-loader>
               </div>
+
               <div class="modal-footer">
                   <button class="btn btn-outline" type="button" routerLink="/">Cancel</button>
                   <button class="btn btn-primary" type="button" (click)="onFormSubmit()">Ok</button>
