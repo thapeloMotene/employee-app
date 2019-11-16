@@ -24,6 +24,7 @@ export class EmployeesService {
   createPerson(obj:any){
     return this._http.post("/api/People", obj);
   }
+  
   deleteEmployee(id:string){
     return this._http.delete('/api/Employees/'+id);
   }
