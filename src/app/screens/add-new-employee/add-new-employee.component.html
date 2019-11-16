@@ -12,32 +12,39 @@
                 <p>Employee Details:</p>
                 <label>Employee ID: </label>
                 <input type="number" name="employeeId"  id="employeeId" [(ngModel)]="employeeId" />
+                <span class="clr-subtext error">{{employmentIdErrorMessage}}</span>
                 <br/>
                 <br/>
                 <label>Employee Number: </label>
                 <input type="text" name="employeeNumber"  id="employeeNumber" [(ngModel)]="employeeNumber" />
+                <span class="clr-subtext error">{{employeeNrErrorMessage}}</span>
                 <br/>
                 <br/>
                 <label>Employment Date: </label>
                 <input type="date" name="employmentDate" id="employmentDate"  [ngModel]="employmentDate | date:'yyyy-MM-dd'" (ngModelChange)="employmentDate = $event" />
+                <span class="clr-subtext error">{{employmentDateErrorMessage}}</span>
                 
 
                 <p>Personal Information:</p>
                 <label>Person ID: </label>
                 <input type="number" name="personId"  id="personId" [(ngModel)]="personId" />
+                <span class="clr-subtext error">{{personIdErrorMessage}}</span>
                 <br/>
                 <br/>
                 <label>First Name: </label>
                 <input type="text" name="firstname"  id="firstname" [(ngModel)]="firstname" />
+                <span class="clr-subtext error">{{firstnameErrorMessage}}</span>
                 <br/>
                 <br/>
                 <label>Last Name: </label>
                 <input type="text" name="lastname" id="lastname"  [(ngModel)]="lastname" />
+                <span class="clr-subtext error">{{lastnameErrorMessage}}</span>
 
                 <br/>
                 <br/>
                 <label>Birth Date: </label>
                 <input type="date" name="birthDate"  id="birthDate"  [ngModel]="birthDate | date:'yyyy-MM-dd'" (ngModelChange)="birthDate = $event"/>
+                <span class="clr-subtext error">{{birthdateErrorMessage}}</span>
 
             </div>
             <div class="modal-footer">

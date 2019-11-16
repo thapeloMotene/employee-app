@@ -11,7 +11,7 @@ export class UpdateEmployeeComponent implements OnInit {
   employeeId:number;
   personId:number;
   employeeNumber:string;
-  employmentDate:Date;
+  employmentDate:any;
   firstname:string;
   lastname:string;
   birthDate:any;
@@ -25,19 +25,21 @@ export class UpdateEmployeeComponent implements OnInit {
       this.employeeId =paramMap["id"];
 
       this._employeeService.getEmployee(this.employeeId).subscribe(res =>{
+
+   
           this.employeeNumber= res["employeeNumber"];
           this.employeeId = res["employeeId"];
-          this.employmentDate=  this.parseDate(res["employmentDate"]);
-          this.terminatedDate=this.parseDate(res["terminatedDate"]);
+          this.employmentDate= res["employedDate"];
+          this.terminatedDate=res["terminatedDate"];
           this.personId = res["personId"];
           this.hasEmployee = true;
           
           this._employeeService.getPerson(this.personId).subscribe(result =>{
-
-            console.log('reslt', result)
+        
+            this.personId= result["personId"];
             this.firstname=result["firstName"];
             this.lastname =result["lastName"];
-            this.birthDate=  this.parseDate(result["birthDate"]);
+            this.birthDate=result["birthDate"];
 
             this.hasPerson=true;
           })
@@ -47,41 +49,77 @@ export class UpdateEmployeeComponent implements OnInit {
   ngOnInit() {
   }
 
-  parseDate( dateString){
 
-    if (dateString){
-      return new Date(dateString);
-    }else{
-      return null
+  employeeNrErrorMessage:string
+  employmentDateErrorMessage:string;
+  birthdateErrorMessage:string;
+  firstnameErrorMessage:string;
+  lastnameErrorMessage:string;
+
+  validate(){
+    let isFieldValid = true;
+    this.employeeNrErrorMessage="";
+    this.employmentDateErrorMessage="";
+    this.birthdateErrorMessage="";
+    this.firstnameErrorMessage="";
+    this.lastnameErrorMessage="";
+
+    if (!this.employeeNumber){
+      isFieldValid=false;
+      this.employeeNrErrorMessage="Please fill in the employee number (it is required)";
     }
 
+    if (!this.employmentDate){
+      isFieldValid=false;
+      this.employmentDateErrorMessage="Please fill in the employment date (it is manditory)";
+    }
 
+    if (!this.firstname){
+      isFieldValid=false;
+      this.firstnameErrorMessage="Please fill in the firstname (it is manditory)";
+    }
+
+    if(!this.lastname){
+      isFieldValid=false;
+      this.lastnameErrorMessage="Please fill in the firstname (it is manditory)";
+    }
+
+    if (!this.birthDate){
+      isFieldValid=false;
+      this.birthdateErrorMessage="Please fill in the birth date (it is manditory)";
+    }
+
+    return isFieldValid;
   }
 
   onFormSubmit(){
 
+    console.log("isValid", this.validate());
 
+  if (this.validate()){
     let employeeObj ={
       employeeId: this.employeeId,
       personId:this.personId,
-      birthDate:this.birthDate,
       employeeNumber:this.employeeNumber,
       employedDate:this.employmentDate,
       terminatedDate:this.terminatedDate,
+  
+  
+    }
+  
+    let personObject ={
+      personId:this.personId,
+      birthDate:this.birthDate,
       firstName:this.firstname.trim(),
       lastName:this.lastname.trim(),
-
     }
- 
-
-   
-
-
-    this._employeeService.updatePerson(this.employeeId,employeeObj).subscribe(res =>{
-        this._employeeService.updatePerson(this.personId,employeeObj).subscribe(response =>{
-
+  
+  
+    this._employeeService.updateEmployee(this.employeeId,employeeObj).subscribe(res =>{
+        this._employeeService.updatePerson(this.personId,personObject).subscribe(response =>{
+  
             this._router.navigate(["/"]);
-
+  
         }, (error)=>{
           if (error.status == 409){
             console.log('employee with that id already exists');
@@ -90,16 +128,24 @@ export class UpdateEmployeeComponent implements OnInit {
           }
         })
     }, (error)=>{
-
+  
       if (error.status == 409){
         console.log('person with that id already exists');
       }else{
         console.log('and unexpected error has occured')
       }
- 
+  
     });
-
-   
   }
+  
+  }
+
+  parseDate(e){
+    let date = new Date(e)
+    return date.toISOString();
+  }
+
+ 
+
 
 }

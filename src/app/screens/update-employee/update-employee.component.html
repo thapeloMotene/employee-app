@@ -12,19 +12,21 @@
                 <div *ngIf="hasEmployee">
                   <p>Employee Details:</p>
                   <label>Employee ID: </label>
-                  <input type="number" name="employeeId"  id="employeeId" [(ngModel)]="employeeId" />
+                  <input type="number" name="employeeId"  id="employeeId" [(ngModel)]="employeeId" disabled />
                   <br/>
                   <br/>
                   <label>Employee Number: </label>
                   <input type="text" name="employeeNumber"  id="employeeNumber" [(ngModel)]="employeeNumber" />
+                  <span class="clr-subtext error">{{employeeNrErrorMessage}}</span>
                   <br/>
                   <br/>
                   <label>Employment Date: </label>
-                  <input type="date" name="employmentDate" id="employmentDate" [(ngModel)]="employmentDate"  />
+                  <input type="date" name="employmentDate" id="employmentDate" [ngModel]="employmentDate | date:'yyyy-MM-dd'" (ngModelChange)="employmentDate = parseDate($event)"  />
+                  <span class="clr-subtext error">{{employmentDateErrorMessage}}</span>
                   <br/>
                   <br/>
                   <label>Termination Date: </label>
-                  <input type="date" name="terminatedDate" id="terminatedDate" [(ngModel)]="terminatedDate" />
+                  <input type="date" name="terminatedDate" id="terminatedDate" [ngModel]="terminatedDate | date:'yyyy-MM-dd'"  (ngModelChange)="terminatedDate  = parseDate($event)" />
                 </div>
 
                 
@@ -32,20 +34,22 @@
                 <div *ngIf="hasPerson">
                   <p>Personal Information:</p>
                   <label>Person ID: </label>
-                  <input type="number" name="personId"  id="personId" [(ngModel)]="personId" />
+                  <input type="number" name="personId"  id="personId" [(ngModel)]="personId" disabled />
                   <br/>
                   <br/>
                   <label>First Name: </label>
                   <input type="text" name="firstname"  id="firstname" [(ngModel)]="firstname" />
+                  <span class="clr-subtext error">{{firstnameErrorMessage}}</span>
                   <br/>
                   <br/>
                   <label>Last Name: </label>
                   <input type="text" name="lastname" id="lastname"  [(ngModel)]="lastname" />
+                  <span class="clr-subtext error">{{lastnameErrorMessage}}</span>
   
                   <br/>
-                  <br/>
                   <label>Birth Date: </label>
-                  <input type="date" name="birthDate"  id="birthDate" [(ngModel)]="birthDate" />
+                  <input type="date" name="birthDate"  id="birthDate" [ngModel]="birthDate | date:'yyyy-MM-dd'"  (ngModelChange)="birthDate  = parseDate($event)" />
+                  <span class="clr-subtext error">{{birthdateErrorMessage}}</span>
                 </div>
 
                 <app-loader *ngIf="!hasPerson"> </app-loader>

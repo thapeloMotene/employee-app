@@ -44,7 +44,7 @@ export class EmployeesService {
 
   updatePerson(id:any, body:any){
 
-    return this._http.put("/api/People/"+id, body);
+    return this._http.put("/api/People/"+id,body);
 
   }
 
